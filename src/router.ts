@@ -3,9 +3,9 @@ import { Router } from "express";
 const router = Router();
 
 /* Autenticación de usuarios */
-router.get("/auth/register", (req, res) => {
+router.post("/auth/register", (req, res) => {
 
-  console.log("Desde registro de usuarios")
+  console.log("Desde registro de usuarios");
 
 });
 
