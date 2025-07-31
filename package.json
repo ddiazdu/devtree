@@ -17,12 +17,14 @@
   "author": "Diego Diaz",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "colors": "^1.4.0",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "mongoose": "^8.16.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
