@@ -1,12 +1,21 @@
-import mongoose, { mongo, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 interface IUser {
+  handle: string;
   name: string;
-  email: string; 
+  email: string;
   password: string;
 }
 
 const userSchema = new Schema<IUser>({
+  handle: {
+    type: String,
+    trim:true,
+    lowercase:true,
+    required: true,
+    unique: true,
+  },
+
   name: {
     type: String,
     required: true,
@@ -18,6 +27,7 @@ const userSchema = new Schema<IUser>({
     required: true,
     trim: true,
     unique: true,
+    lowercase: true,
   },
   password: {
     type: String,
