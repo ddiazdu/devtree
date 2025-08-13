@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import slug from "slug";
 import User from "../models/User";
-import { hashPassword } from "../utils/auth";
+import { hashPassword, matchPassword } from "../utils/auth";
 import { validationResult } from "express-validator";
 
 //assing type to request and response
@@ -65,6 +65,16 @@ export const login = async (req: Request, res: Response) => {
     const error = new Error("Este usuario no existe");
     return res.status(404).json({ error: error.message });
   }
+  // Compare password
+  // contraseña ingresada, contraseña almacenada
+  const isPassMatch = await matchPassword(password, user.password);
 
-  //console.log("Desde Login");
+  if (!isPassMatch) {
+    const error = new Error("La contraseña ingresada no es correcta");
+    return res.status(401).json({ error: error.message });
+  }
+
+  res.send("Autenticado");
+
+
 };
