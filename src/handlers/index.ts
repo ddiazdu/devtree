@@ -6,14 +6,6 @@ import { validationResult } from "express-validator";
 
 //assing type to request and response
 export const createAccount = async (req: Request, res: Response) => {
-  //error handling
-  let errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    //get errors in array
-    return res.status(400).json({ errors: errors.array() });
-  }
-
   const { email, password } = req.body;
 
   const userExists = await User.findOne({ email });
@@ -51,14 +43,6 @@ export const createAccount = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
 
-  //error handling
-  let errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    //get errors in array
-    return res.status(400).json({ errors: errors.array() });
-  }
-
   const user = await User.findOne({ email });
 
   if (!user) {
@@ -75,6 +59,4 @@ export const login = async (req: Request, res: Response) => {
   }
 
   res.send("Autenticado");
-
-
 };
